@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{% block title %}Correos Enviados {% endblock %}</h1>
+{% endblock %}
+{% block action %}
+    <a class="buttonAgregar" href="{{ url_for("mail.add") }}">Agregar Contacto</a>
+    <a class="button" href="{{ url_for("mail.create") }}">Nuevo Correo</a>
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for mail in mails %}
+        <li class="mail">
+            <div>
+                <span class="email"> Para: {{ mail["email"] }}</span>
+                <p class="email-content"> Contenido: {{ mail["content"] }}</p>
+                <span class="subject"> Asunto: {{ mail["subject"] }}</span>
+                <hr>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+ 
+{% endblock %}

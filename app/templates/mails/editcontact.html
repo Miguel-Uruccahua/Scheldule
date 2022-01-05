@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block action %}
+    <a class="button" href="{{ url_for("contact.contact")}}">Volver</a>
+{% endblock %}
+
+{% block header %}
+    <h1>{% block title %} Editar Contacto {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <div class="form-group">
+            <label for="fullname">Nombres</label>
+            <input name="fullname" type="text" id="fullname" value="{{ contacto["fullname"] }}">
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input name="phone" type="number" id="phone" value="{{ contacto["phone"] }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input name="email" type="email" id="email" value="{{ contacto["email"] }}">
+        </div>
+        <div class="form-group">
+            <button class="button">Guardar</button>
+        </div>
+    </form>
+{% endblock %}

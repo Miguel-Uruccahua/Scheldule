@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<title>{% block title%} {% endblock %}</title>
+
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+<nav class="navigatoroff">
+    <h2>Sheldule</h2>
+    <ul>
+        {% if g.user %}            
+            <a href="{{ (url_for('mail.index')) }}">Hay una sesion iniciada</a>
+            <a href="{{url_for("auth.logout")}}"> Cerrar Sesion</a>
+            
+
+        {% else %}
+            <a href="{{url_for("auth.register")}}">  registrarse</a>
+            <a href="{{url_for("auth.login")}}"> Iniciar Sesion</a>
+        {% endif %}
+    </ul>
+
+</nav>
+<section class="content">
+    
+    <header>
+        {% block header %}
+        {% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}   
+    {% block content %}
+    {% endblock %}
+</section>

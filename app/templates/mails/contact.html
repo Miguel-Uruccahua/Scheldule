@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{% block title %}Contactos {% endblock %}</h1>
+{% endblock %}
+{% block action %}
+    <a class="buttonAgregar" href="{{ url_for("mail.add") }}">Agregar Contacto</a>
+    <a class="button" href="{{ url_for("mail.create") }}">Nuevo Correo</a>
+    
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for contacto in contactos %}
+       
+        <li class="mail">
+            <div>
+                <form action="{{ url_for("contact.deletecontact", id=contacto["id"])}}" method="post">
+                <div class="form-group">
+                    <button class="button" type="submit"  onclick="return confirm('estas seguro de querer eliminarlo?')">Eliminar</button>
+                </div>
+                </form>
+                <a class="buttonAgregar" href="{{ url_for("contact.editcontact", id=contacto["id"])}}">Editar</a>
+                <p class="fullname">{{ contacto["fullname"] }}</p>
+                <p class="phone">{{ contacto["phone"] }}</p>
+                <p class="email">{{ contacto["email"] }}</p>
+                <hr>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

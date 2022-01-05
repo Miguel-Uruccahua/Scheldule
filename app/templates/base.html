@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<title>{% block title%} {% endblock %}</title>
+
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+<link href="https://fonts.googleapis.com/css2? family=Raleway&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/3602c75403.js" crossorigin="anonymous"></script>
+<nav>
+   
+    <div class="navigatoroff">
+        <h2>Schedule</h2>
+        
+        
+            <div class="item">           
+                    <div class="title"><a href="">User : {{ g.user["username"]}}</a></div>
+            </div>
+             
+            <div class="item separator">       
+
+            </div>
+            <div class="item">           
+                    <div class="title"><a href="{{url_for("mail.index")}}">Inicio</a></div>
+            </div>
+
+            <div class="item separator">                
+            </div>
+            <div class="item">                                
+                    <div class="title"><a href="{{url_for("contact.contact")}}">Contactos</a></div>
+            </div>
+
+            <div class="item separator">
+
+            </div>
+            <div class="item">
+                    <div class="title"><a href="{{url_for("mail.changePassword")}}">Configuracion</a></div>      
+            </div>
+
+            <div class="item separator">
+
+            </div>
+            <div class="item">             
+                    <div class="title"><a href="{{url_for("auth.logout")}}">Cerrar Sesion</a></div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content">
+    <div class="top-bar">
+        <div>
+        <form method="get">
+            <input name="search" type="text" placeholder="Quieres Buscar Algo?">
+        </form>
+        </div>
+        {% block action %}
+        {% endblock %}
+    </div>
+    <header>
+        {% block header %}
+        {% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}   
+    {% block content %}
+    {% endblock %}
+</section>
